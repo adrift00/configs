@@ -132,12 +132,14 @@ noremap <c-j> J
 noremap <c-k> K    
 nnoremap < <<
 nnoremap > >>
-" This will cause the vim into replace mode automaticly when enter the vim, so
-" comment it now.
+" This will cause the vim into replace mode automaticly when enter the vim, so comment it now.
 "if maparg('<esc>', 'n') ==# ''
 "  nnoremap <silent> <esc> <esc><esc>:noh<cr>
 "  "nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 "endif
+
+let mapleader=' '
+noremap gb <c-o>
 
 " change the behaver when use Vex
 let g:netrw_browse_split = 4    
@@ -178,10 +180,13 @@ call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
 Plug 'tpope/vim-commentary'
+Plug 'easymotion/vim-easymotion'
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
+"Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'davidhalter/jedi-vim', { 'for': 'python'}
 
 
 " Initialize plugin system
@@ -190,8 +195,24 @@ call plug#end()
 
 " Configs for nerdtree
 nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
+noremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 let NERDTreeShowHidden=1
 
+" Configs for easymotion
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+
+
+" jedi vim
+let g:jedi#goto_command = "gd"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_stubs_command = "<leader>s"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "gh"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "F2"
