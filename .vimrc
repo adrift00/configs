@@ -169,3 +169,28 @@ endif
 
 " 光标回到上次编辑的位置
 autocmd BufReadPost *  if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
+
+
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+Plug 'tpope/vim-commentary'
+
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+
+
+" Initialize plugin system
+call plug#end()
+
+
+" Configs for nerdtree
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
