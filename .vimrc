@@ -95,6 +95,9 @@ colorscheme ron
 "if has("termguicolors")
 "    set termguicolors
 "endif 
+"
+" let g:python_host_prog = expand('~/miniconda3/bin/python')
+" let g:python3_host_prog = expand('~/miniconda3/bin/python')
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -185,9 +188,9 @@ Plug 'easymotion/vim-easymotion'
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
-"Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python'}
 
+Plug 'jiangmiao/auto-pairs'
 
 " Initialize plugin system
 call plug#end()
@@ -206,7 +209,6 @@ map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 
-
 " jedi vim
 let g:jedi#goto_command = "gd"
 let g:jedi#goto_assignments_command = "<leader>g"
@@ -216,3 +218,64 @@ let g:jedi#documentation_command = "gh"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "F2"
+let g:jedi#completions_enabled = 1
+let g:jedi#show_call_signatures = "1"
+" let g:jedi#popup_on_dot = 0
+
+autocmd FileType python setlocal completeopt-=preview
+
+
+
+" style settings
+
+" 更清晰的错误标注：默认一片红色背景，语法高亮都被搞没了
+" 只显示红色或者蓝色下划线或者波浪线
+hi! clear SpellBad
+hi! clear SpellCap
+hi! clear SpellRare
+hi! clear SpellLocal
+if has('gui_running')
+	hi! SpellBad gui=undercurl guisp=red
+	hi! SpellCap gui=undercurl guisp=blue
+	hi! SpellRare gui=undercurl guisp=magenta
+	hi! SpellRare gui=undercurl guisp=cyan
+else
+	hi! SpellBad term=standout ctermfg=1 term=underline cterm=underline
+	hi! SpellCap term=underline cterm=underline
+	hi! SpellRare term=underline cterm=underline
+	hi! SpellLocal term=underline cterm=underline
+endif
+
+" 去掉 sign column 的白色背景
+hi! SignColumn guibg=NONE ctermbg=NONE
+
+" 修改行号为浅灰色，默认主题的黄色行号很难看，换主题可以仿照修改
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE 
+	\ gui=NONE guifg=DarkGrey guibg=NONE
+
+" 修正补全目录的色彩：默认太难看
+hi Pmenu ctermfg=black ctermbg=gray  guibg=#444444
+hi PmenuSel ctermfg=7 ctermbg=4 guibg=#555555 guifg=#ffffff
+
+
+"----------------------------------------------------------------------
+" 终端设置，隐藏行号和侧边栏
+"----------------------------------------------------------------------
+if has('terminal') && exists(':terminal') == 2
+	if exists('##TerminalOpen')
+		augroup VimUnixTerminalGroup
+			au! 
+			au TerminalOpen * setlocal nonumber signcolumn=no
+		augroup END
+	endif
+endif
+
+
+"----------------------------------------------------------------------
+" quickfix 设置，隐藏行号
+"----------------------------------------------------------------------
+augroup VimInitStyle
+	au!
+	au FileType qf setlocal nonumber
+augroup END
+
