@@ -254,8 +254,10 @@ highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE
 	\ gui=NONE guifg=DarkGrey guibg=NONE
 
 " 修正补全目录的色彩：默认太难看
-hi Pmenu ctermfg=black ctermbg=gray  guibg=#444444
-hi PmenuSel ctermfg=7 ctermbg=4 guibg=#555555 guifg=#ffffff
+highlight Pmenu ctermfg=7 guifg=#d4d4d4 ctermbg=0 guibg=#303030 cterm=NONE gui=NONE
+highlight PmenuSel ctermfg=7 guifg=#d4d4d4 ctermbg=4 guibg=#264f78 cterm=NONE gui=NONE
+highlight PmenuSbar ctermbg=7 guibg=#808080 cterm=NONE gui=NONE
+highlight PmenuThumb ctermbg=4 guibg=#007acc cterm=NONE gui=NONE
 
 
 "----------------------------------------------------------------------
