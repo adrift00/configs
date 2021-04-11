@@ -1,0 +1,1 @@
+/home/adrift/configs/.tmux
