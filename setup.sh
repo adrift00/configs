@@ -23,7 +23,7 @@ fi
 ln -s ~/configs/.vimrc ~/.vimrc
 
 # download vim-plug
-curl -fLo ~/configs/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# curl -fLo ~/configs/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 if [ -d ~/.vim ]; then
     mv ~/.vim ~/.vim.bak
 fi
