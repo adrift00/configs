@@ -14,10 +14,6 @@ if [ -d ~/.tmux ]; then
 fi
 ln -s ~/configs/.tmux ~/.tmux
 
-# clone tpm plugin
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-#
 tmux source ~/.tmux.conf
 
 # install tmux plugins
